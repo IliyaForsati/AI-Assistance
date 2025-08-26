@@ -1,15 +1,20 @@
 version: '3.9'
 
+name: RTProAI
+
 services:
-  RTProAI:
-    build: ./
+  backend:
+    image: rtpro-devmod:latest
     container_name: RTProAI-c
+    working_dir: /home/app
     ports:
       - "8000:8000"
     volumes:
       - .:/home/app
     networks:
       - network
+    stdin_open: true
+    tty: true
     depends_on:
       - LLM
     
@@ -22,8 +27,11 @@ services:
       - ollama-models:/root/.ollama
     ports:
       - "11434:11434"
-
+    restart: unless-stopped
 
 networks:
   network:
     driver: bridge
+
+volumes:
+  ollama-models:

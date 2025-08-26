@@ -8,7 +8,7 @@ import re
 from models.models import Prompt
 
 MAX_TOKENS = 100
-DOCKER_CONTAINER = "ai"
+DOCKER_CONTAINER = "LLM"
 OLLAMA_HOST = f"http://{DOCKER_CONTAINER}:11434"
 OLLAMA_API = "/v1/completions"
 
