@@ -1,26 +1,29 @@
+# library imports
 from fastapi import FastAPI, Request, HTTPException # pyright: ignore[reportMissingImports]
 from fastapi.responses import HTMLResponse, JSONResponse # pyright: ignore[reportMissingImports]
 from fastapi.templating import Jinja2Templates # pyright: ignore[reportMissingImports]
-from pydantic import BaseModel # pyright: ignore[reportMissingImports]
 import requests # pyright: ignore[reportMissingModuleSource]
 import re
 
+# local imports
+from models.models import Prompt
+
+# Fast Api setup
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-OLLAMA_HOST = "http://ai:11434/v1/completions"
+DOCKER_CONTAINER = "ai"
+OLLAMA_HOST = f"http://{DOCKER_CONTAINER}:11434/v1/completions"
 OLLAMA_API = "/v1/completions"
 MAX_TOKENS = 100
 
-class Message(BaseModel):
-    message: str
 
 @app.get("/", response_class=HTMLResponse)
 def get_chat(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/chat")
-def chat(msg: Message):
+def chat(msg: Prompt):
     try:
         user_msg = msg.message
         reply = get_ai_reply(user_msg)
