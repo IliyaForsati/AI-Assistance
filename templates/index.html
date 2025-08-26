@@ -58,7 +58,7 @@
                 const data = await response.json();
                 addMessage(data.reply, "bot");
 
-                if (data.js) {
+                if (data.haveJs) {
                     runCode(data.js)
                 }
             } catch (err) {
