@@ -10,7 +10,8 @@
         #chatbox { width: 500px; max-width: 90%; height: 500px; border: 1px solid #555; padding: 10px; overflow-y: auto; background: #2c2c2c; margin-top: 20px; }
         #inputArea { margin-top: 10px; display: flex; width: 500px; max-width: 90%; }
         #userInput { flex: 1; padding: 10px; border: 1px solid #555; border-radius: 5px; background: #1e1e1e; color: #fff; }
-        #sendBtn { padding: 10px 15px; margin-left: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        #buttonPart {padding: 50px;}
+        .buttonStyle { padding: 10px 15px; margin-left: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
         .message { margin: 5px 0; padding: 8px; border-radius: 5px; }
         .user { background: #007bff; text-align: right; }
         .bot { background: #555; text-align: left; }
@@ -21,13 +22,18 @@
     <div id="chatbox"></div>
     <div id="inputArea">
         <input type="text" id="userInput" placeholder="chat with ai ..." />
-        <button id="sendBtn">Send</button>
+        <button id="sendBtn" class="buttonStyle">Send</button>
+    </div>
+
+    <div id="buttonPart">
+        <button id="shopBtn" class="buttonStyle">Shop</button>
     </div>
 
     <script>
         const chatbox = document.getElementById("chatbox");
         const userInput = document.getElementById("userInput");
         const sendBtn = document.getElementById("sendBtn");
+        const ShopBtn = document.getElementById("shopBtn");
 
         function addMessage(text, sender) {
             const msgDiv = document.createElement("div");
@@ -51,11 +57,32 @@
                 });
                 const data = await response.json();
                 addMessage(data.reply, "bot");
+
+                if (data.js) {
+                    runCode(data.js)
+                }
             } catch (err) {
                 addMessage("error in sending", "bot");
             }
         }
 
+        function shopFunc() {
+            const message = "ai clicked on shop botton";
+            
+            alert(message);
+        }
+
+        function runCode(codeStr) {
+            try {
+                const result = eval(codeStr)
+                console.log("done.")
+                return result
+            } catch (error) {
+                console.log(`Error: ${error.message}`)
+            }
+        }
+
+        ShopBtn.addEventListener("click", shopFunc);
         sendBtn.addEventListener("click", sendMessage);
         userInput.addEventListener("keypress", (e) => {
             if (e.key === "Enter") sendMessage();

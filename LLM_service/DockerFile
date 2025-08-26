@@ -1,3 +1,7 @@
 FROM ollama/ollama:0.11.6-rc0-rocm
 
-RUN command
+# RUN ollama pull phi3
+
+# EXPOSE 11434
+
+# CMD [ "ollama", "run", "phi3" ]
