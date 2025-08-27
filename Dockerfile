@@ -14,7 +14,7 @@ RUN pip install -r ./requirements.txt
 
 EXPOSE 8000
 
-CMD ["fastapi", "run", "main.py"]
+CMD ["fastapi", "dev", "--host", "0.0.0.0"]
 
 # you can say "dokcer run -p (port):8000 -it <image> /bin/bash" 
 # to run command CMD [ "/bin/bash" ]

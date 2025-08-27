@@ -44,3 +44,4 @@ def _extract_js_code(ai_response: str) -> str:
     if code_blocks:
         return code_blocks[0].strip()
     return None
+    
