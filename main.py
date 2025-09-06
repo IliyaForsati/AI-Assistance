@@ -1,6 +1,6 @@
 # library imports
-from fastapi import FastAPI, Request, HTTPException # pyright: ignore[reportMissingImports]
-from fastapi.responses import HTMLResponse, JSONResponse # pyright: ignore[reportMissingImports]
+from fastapi import FastAPI, Request # pyright: ignore[reportMissingImports]
+from fastapi.responses import HTMLResponse # pyright: ignore[reportMissingImports]
 from fastapi.templating import Jinja2Templates # pyright: ignore[reportMissingImports]
 
 
@@ -12,7 +12,7 @@ from ai_services import phi3
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-# APIs
+# end points
 @app.get("/", response_class=HTMLResponse)
 def get_chat(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})

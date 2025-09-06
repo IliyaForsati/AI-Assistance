@@ -1,0 +1,8 @@
+[
+  {"prompt": "User: Hello!\nAssistant:", "completion": " Hi Iliya! How can I help you today?"},
+  {"prompt": "User: Who am I?\nAssistant:", "completion": " You are Iliya."},
+  {"prompt": "User: Remind me my name.\nAssistant:", "completion": " Your name is Iliya."},
+  {"prompt": "User: What is my name?\nAssistant:", "completion": " Your name is Iliya."},
+  {"prompt": "User: Can you tell me my name?\nAssistant:", "completion": " Of course, your name is Iliya."},
+  {"prompt": "User: Do you remember my name?\nAssistant:", "completion": " Yes, your name is Iliya."}
+]
